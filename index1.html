@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORTEX ARMOR | Industry-Dominating BJJ Kimonos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: '#00F0FF',
+                        'cyber-dark': '#00A8B5',
+                        gold: '#D4AF37',
+                        'gold-light': '#F3E5AB',
+                        obsidian: '#0B0C10',
+                        'card-bg': '#12141D',
+                        'card-border': 'rgba(255, 255, 255, 0.08)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0C10;
+            color: #F4F4F5;
+            overflow-x: hidden;
+        }
+
+        .glow-cyber {
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+        }
+        .glow-gold {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+        }
+        .text-glow-cyber {
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+        }
+        .text-glow-gold {
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glass-panel {
+            background: rgba(18, 20, 29, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-cyan {
+            background: rgba(18, 20, 29, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-ticker {
+            display: flex;
+            width: 200%;
+            animation: ticker 25s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-gray-100 antialiased selection:bg-cyber selection:text-black">
+
+    <!-- LANGUAGE SELECTION LANDING SPLASH SCREEN -->
+    <div id="language-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 transition-opacity duration-500">
+        <div class="glass-panel-cyan w-full max-w-lg rounded-3xl p-8 sm:p-12 glow-cyber text-center relative overflow-hidden">
+            <div class="w-20 h-20 bg-gradient-to-tr from-cyber to-blue-600 rounded-2xl flex items-center justify-center font-black text-black text-4xl shadow-2xl mx-auto mb-6 transform -rotate-6">
+                V
+            </div>
+
+            <span class="inline-block text-xs font-black tracking-widest uppercase text-cyber bg-cyber/10 px-4 py-1.5 rounded-full border border-cyber/40 mb-4">
+                VORTEX ARMOR • DOMINATE THE MATS
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white mb-2">
+                SELECT LANGUAGE / ИЗБЕРЕТЕ ЕЗИК
+            </h1>
+            <p class="text-gray-400 text-sm mb-8 font-light">
+                Created by active World Champion BJJ Athletes for daily high-intensity warfare.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- English -->
+                <button onclick="setLanguage('en')" class="group p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-cyber hover:bg-cyber/10 transition-all duration-300 text-left flex items-center justify-between">
+                    <div>
+                        <div class="text-lg font-black text-white group-hover:text-cyber uppercase">English</div>
+                        <div class="text-xs text-gray-400">Proceed in English</div>
+                    </div>
+                    <span class="text-3xl">🇬🇧</span>
+                </button>
+
+                <!-- Bulgarian -->
+                <button onclick="setLanguage('bg')" class="group p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-cyber hover:bg-cyber/10 transition-all duration-300 text-left flex items-center justify-between">
+                    <div>
+                        <div class="text-lg font-black text-white group-hover:text-cyber uppercase">Български</div>
+                        <div class="text-xs text-gray-400">Продължи на Български</div>
+                    </div>
+                    <span class="text-3xl">🇧🇬</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyber to-blue-600 rounded-lg flex items-center justify-center font-black text-black text-xl shadow-lg transform group-hover:rotate-12 transition-transform">
+                        V
+                    </div>
+                    <span class="text-xl sm:text-2xl font-black tracking-widest uppercase text-white">
+                        VORTEX<span class="text-cyber">.ARMOR</span>
+                    </span>
+                </a>
+
+                <!-- Nav Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest uppercase">
+                    <a href="#hero" data-i18n="nav_home" class="hover:text-cyber transition-colors">Home</a>
+                    <a href="#heritage" data-i18n="nav_heritage" class="hover:text-cyber transition-colors">Champion DNA</a>
+                    <a href="#models" data-i18n="nav_gis" class="hover:text-cyber transition-colors">Kimonos</a>
+                    <a href="#craft" data-i18n="nav_tech" class="hover:text-cyber transition-colors">Tech Specs</a>
+                    <a href="#sales" data-i18n="nav_contact" class="hover:text-cyber transition-colors">Sales Line</a>
+                </nav>
+
+                <!-- Right Action Buttons -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleLanguage()" class="px-3.5 py-2 rounded-xl border border-cyber/40 bg-cyber/10 hover:bg-cyber/20 text-xs font-black uppercase tracking-wider text-cyber transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-globe"></i>
+                        <span id="current-lang-code">EN</span>
+                    </button>
+
+                    <a href="#sales" class="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-black tracking-widest uppercase bg-cyber text-black hover:bg-cyan-300 transition-all duration-300 transform hover:scale-105 shadow-lg glow-cyber">
+                        <i class="fa-solid fa-phone"></i> <span data-i18n="btn_call">Call Sales</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center bg-grid overflow-hidden">
+        <!-- Glow Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-cyber/40 bg-cyber/10 text-cyber text-xs font-bold uppercase tracking-widest mb-8 glow-cyber">
+                <i class="fa-solid fa-crown"></i> <span data-i18n="hero_badge">BY BJJ CHAMPIONS • BUILT FOR WAR</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+                <span data-i18n="hero_h1_1">UNMATCHED MAT</span> <br class="hidden sm:inline"/>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyber via-blue-300 to-gold text-glow-cyber" data-i18n="hero_h1_2">
+                    DOMINANCE
+                </span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-gray-400 text-base sm:text-xl mb-12 leading-relaxed font-light" data-i18n="hero_desc">
+                Engineered from the ground up by active World Championship medalists. Ultra-durable 450 GSM weaves designed for relentless daily sparring, grip neutralization, and zero fabric failures.
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="#models" class="w-full sm:w-auto px-10 py-5 rounded-2xl font-black text-xs tracking-widest uppercase bg-gradient-to-r from-cyber to-blue-600 text-black hover:from-cyan-300 hover:to-cyber shadow-2xl glow-cyber transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_explore">
+                    Explore Flagship Models
+                </a>
+                <a href="#sales" class="w-full sm:w-auto px-10 py-5 rounded-2xl font-black text-xs tracking-widest uppercase border border-white/20 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300" data-i18n="btn_call_direct">
+                    Call Direct Hotline
+                </a>
+            </div>
+
+            <!-- Scroll Ticker Banner -->
+            <div class="mt-20 border-y border-white/10 py-4 overflow-hidden bg-black/40 backdrop-blur-md">
+                <div class="animate-ticker text-xs font-black uppercase tracking-widest text-gray-400 gap-12">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-cyber"></i> <span data-i18n="t_1">450 GSM Pearl Weave</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-gold"></i> <span data-i18n="t_2">Created by BJJ Champions</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-shield-cat text-cyber"></i> <span data-i18n="t_3">Anti-Bacterial EVA Collar</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-gold"></i> <span data-i18n="t_4">Triple Reinforced Seams</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-cyber"></i> <span data-i18n="t_1">450 GSM Pearl Weave</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-gold"></i> <span data-i18n="t_2">Created by BJJ Champions</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-shield-cat text-cyber"></i> <span data-i18n="t_3">Anti-Bacterial EVA Collar</span></span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-layer-group text-gold"></i> <span data-i18n="t_4">Triple Reinforced Seams</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMPION HERITAGE SECTION -->
+    <section id="heritage" class="py-24 bg-card-bg/60 border-t border-white/10 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs font-bold text-cyber tracking-widest uppercase block mb-3" data-i18n="heritage_sub">Uncompromising Pedigree</span>
+                    <h2 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white mb-6" data-i18n="heritage_title">
+                        DESIGNED & BATTLE-TESTED BY CHAMPIONS
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8 font-light" data-i18n="heritage_desc">
+                        Standard kimonos fail under heavy guard passing and daily multi-hour rolls. VORTEX ARMOR was created by active Black Belt gold medalists who engineered every stitch to withstand thousands of hours of high-intensity grappling.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                            <span class="block text-3xl sm:text-4xl font-black text-cyber">15+</span>
+                            <span class="text-[10px] sm:text-xs uppercase text-gray-400 tracking-wider font-semibold" data-i18n="stat_gold">Gold Medals</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                            <span class="block text-3xl sm:text-4xl font-black text-gold">100%</span>
+                            <span class="text-[10px] sm:text-xs uppercase text-gray-400 tracking-wider font-semibold" data-i18n="stat_pre">Pre-Shrunk</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-black/50 border border-white/10">
+                            <span class="block text-3xl sm:text-4xl font-black text-cyber">3x</span>
+                            <span class="text-[10px] sm:text-xs uppercase text-gray-400 tracking-wider font-semibold" data-i18n="stat_stitch">Stitch Density</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quote Card -->
+                <div class="glass-panel-cyan p-8 sm:p-10 rounded-3xl relative glow-cyber">
+                    <div class="text-cyber text-4xl mb-4"><i class="fa-solid fa-quote-left"></i></div>
+                    <p class="text-lg sm:text-xl font-semibold italic text-white mb-6" data-i18n="quote_text">
+                        "We built these kimonos because we were tired of gear ripping before major competitions. This armor is made for those who live on the mats every single day."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyber to-gold flex items-center justify-center font-black text-black">
+                            VB
+                        </div>
+                        <div>
+                            <span class="block font-black uppercase text-white" data-i18n="quote_author">VORTEX Founder Team</span>
+                            <span class="text-xs text-cyber font-bold uppercase tracking-wider" data-i18n="quote_role">Black Belt Champion Division</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLAGSHIP PRODUCTS SHOWCASE -->
+    <section id="models" class="py-24 bg-obsidian relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-cyber tracking-widest uppercase mb-2" data-i18n="sec_models_sub">Flagship Gear</h2>
+                <p class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white" data-i18n="sec_models_title">CHOOSE YOUR ARMOR</p>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-cyber via-blue-500 to-gold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                <!-- MODEL 1: APEX LA EDITION (BLUE) -->
+                <div class="glass-panel rounded-3xl overflow-hidden hover:border-cyber/60 transition-all duration-500 flex flex-col justify-between group">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="text-xs font-black tracking-widest uppercase text-cyber bg-cyber/10 px-3.5 py-1.5 rounded-full border border-cyber/30" data-i18n="m1_tag">Royal Blue Edition</span>
+                                <h3 class="text-3xl font-black uppercase mt-3 tracking-wide text-white">APEX LA EDITION</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-3xl font-black text-cyber">$169</span>
+                                <span class="block text-xs text-emerald-400 font-bold uppercase" data-i18n="in_stock">In Stock</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed" data-i18n="m1_desc">
+                            Striking royal blue competition-ready training kimono. Crafted with 450 GSM Pearl Weave jacket and double-reinforced knee paneling for maximum longevity.
+                        </p>
+
+                        <!-- Image Frame -->
+                        <div class="relative bg-black/60 rounded-2xl p-6 mb-6 border border-white/5 flex items-center justify-center min-h-[340px] overflow-hidden group">
+                            <img src="kimono-blue.png" alt="Apex LA Edition Blue BJJ Kimono" class="max-h-[300px] w-auto object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <!-- Specs List -->
+                        <div class="space-y-2.5 mb-6 text-xs border-t border-b border-white/10 py-4">
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_jacket">Jacket Weave:</span> <span class="font-bold text-gray-200">450 GSM Pearl Weave</span></div>
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_pants">Pants Material:</span> <span class="font-bold text-gray-200">10oz Reinforced Canvas</span></div>
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_purpose">Primary Purpose:</span> <span class="font-bold text-cyber" data-i18n="spec_purpose_val1">Daily Training & Hard Sparring</span></div>
+                        </div>
+
+                        <!-- Size Selector -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-300" data-i18n="size_label">Select Size:</label>
+                                <span class="text-xs text-cyber font-semibold" id="selected-size-1">Selected: A2</span>
+                            </div>
+                            <div class="grid grid-cols-5 gap-2 text-center text-xs font-bold">
+                                <button onclick="selectSize(1, 'A0')" class="size-btn-1 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-cyber transition-all">A0</button>
+                                <button onclick="selectSize(1, 'A1')" class="size-btn-1 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-cyber transition-all">A1</button>
+                                <button onclick="selectSize(1, 'A2')" class="size-btn-1 py-2.5 rounded-xl border border-cyber bg-cyber/20 text-cyber transition-all">A2</button>
+                                <button onclick="selectSize(1, 'A3')" class="size-btn-1 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-cyber transition-all">A3</button>
+                                <button onclick="selectSize(1, 'A4')" class="size-btn-1 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-cyber transition-all">A4</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 sm:px-8 pb-8 pt-2">
+                        <a href="#sales" class="w-full block text-center py-4 rounded-xl font-black text-xs tracking-widest uppercase bg-cyber text-black hover:bg-cyan-300 shadow-lg glow-cyber transition-all transform hover:scale-[1.02]" data-i18n="btn_order_m1">
+                            Call Hotline to Order Apex
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MODEL 2: STEALTH ONYX (BLACK) -->
+                <div class="glass-panel rounded-3xl overflow-hidden hover:border-gold/60 transition-all duration-500 flex flex-col justify-between group">
+                    <div class="p-6 sm:p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="text-xs font-black tracking-widest uppercase text-gold bg-gold/10 px-3.5 py-1.5 rounded-full border border-gold/30" data-i18n="m2_tag">Stealth Black Edition</span>
+                                <h3 class="text-3xl font-black uppercase mt-3 tracking-wide text-white">STEALTH ONYX</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-3xl font-black text-gold">$159</span>
+                                <span class="block text-xs text-emerald-400 font-bold uppercase" data-i18n="in_stock">In Stock</span>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed" data-i18n="m2_desc">
+                            Sleek, minimalist matte-black weave with low-profile shoulder crests. Built with pre-treated anti-shrink technology for non-stop mat grind.
+                        </p>
+
+                        <!-- Image Frame -->
+                        <div class="relative bg-black/60 rounded-2xl p-6 mb-6 border border-white/5 flex items-center justify-center min-h-[340px] overflow-hidden group">
+                            <img src="kimono-black.png" alt="Stealth Onyx Black BJJ Kimono" class="max-h-[300px] w-auto object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <!-- Specs List -->
+                        <div class="space-y-2.5 mb-6 text-xs border-t border-b border-white/10 py-4">
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_jacket">Jacket Weave:</span> <span class="font-bold text-gray-200">450 GSM Micro Pearl</span></div>
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_pants">Pants Material:</span> <span class="font-bold text-gray-200">10oz Ripstop Canvas</span></div>
+                            <div class="flex justify-between"><span class="text-gray-400" data-i18n="spec_purpose">Primary Purpose:</span> <span class="font-bold text-gold" data-i18n="spec_purpose_val2">Pro-Grade Training Armor</span></div>
+                        </div>
+
+                        <!-- Size Selector -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-300" data-i18n="size_label">Select Size:</label>
+                                <span class="text-xs text-gold font-semibold" id="selected-size-2">Selected: A2</span>
+                            </div>
+                            <div class="grid grid-cols-5 gap-2 text-center text-xs font-bold">
+                                <button onclick="selectSize(2, 'A0')" class="size-btn-2 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-gold transition-all">A0</button>
+                                <button onclick="selectSize(2, 'A1')" class="size-btn-2 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-gold transition-all">A1</button>
+                                <button onclick="selectSize(2, 'A2')" class="size-btn-2 py-2.5 rounded-xl border border-gold bg-gold/20 text-gold transition-all">A2</button>
+                                <button onclick="selectSize(2, 'A3')" class="size-btn-2 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-gold transition-all">A3</button>
+                                <button onclick="selectSize(2, 'A4')" class="size-btn-2 py-2.5 rounded-xl border border-white/10 bg-white/5 hover:border-gold transition-all">A4</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 sm:px-8 pb-8 pt-2">
+                        <a href="#sales" class="w-full block text-center py-4 rounded-xl font-black text-xs tracking-widest uppercase bg-gold text-black hover:bg-gold-light shadow-lg glow-gold transition-all transform hover:scale-[1.02]" data-i18n="btn_order_m2">
+                            Call Hotline to Order Onyx
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CRAFTSMANSHIP & TECH SPECS -->
+    <section id="craft" class="py-24 bg-card-bg/80 border-t border-white/10 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-cyber tracking-widest uppercase mb-2" data-i18n="craft_sub">Engineering Superiority</h2>
+                <p class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white" data-i18n="craft_title">BUILT FOR WARFARE</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-panel p-8 rounded-3xl border border-white/10 hover:border-cyber/50 transition-all">
+                    <div class="w-14 h-14 bg-cyber/10 text-cyber rounded-2xl flex items-center justify-center text-2xl mb-6 border border-cyber/30">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3 text-white" data-i18n="f1_t">Triple-Stitched Seams</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="f1_d">
+                        Armpits, sleeve cuffs, and pant stress points feature high-density triple stitching to withstand aggressive grip breaking and heavy pressure passing.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-8 rounded-3xl border border-white/10 hover:border-gold/50 transition-all">
+                    <div class="w-14 h-14 bg-gold/10 text-gold rounded-2xl flex items-center justify-center text-2xl mb-6 border border-gold/30">
+                        <i class="fa-solid fa-bacteria"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3 text-white" data-i18n="f2_t">Anti-Bacterial EVA Lapel</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="f2_d">
+                        Fast-drying EVA foam collar resists moisture accumulation, reduces lapel weight, and thwarts opponent choke setups.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-8 rounded-3xl border border-white/10 hover:border-cyber/50 transition-all">
+                    <div class="w-14 h-14 bg-cyber/10 text-cyber rounded-2xl flex items-center justify-center text-2xl mb-6 border border-cyber/30">
+                        <i class="fa-solid fa-temperature-arrow-down"></i>
+                    </div>
+                    <h3 class="text-xl font-black uppercase mb-3 text-white" data-i18n="f3_t">Pre-Shrunk Technology</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n="f3_d">
+                        Pre-treated fabric ensures your gi maintains its exact fit wash after wash. No unpredictable shrinking after heavy hot water washes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIRECT SALES HOTLINE & AVAILABILITY MATRIX -->
+    <section id="sales" class="py-24 bg-obsidian relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel-cyan rounded-3xl p-8 sm:p-14 text-center glow-cyber relative overflow-hidden">
+                <!-- Background Accent Glow -->
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-cyber/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="w-20 h-20 bg-cyber/10 text-cyber rounded-2xl flex items-center justify-center text-3xl mx-auto mb-6 border border-cyber/40 glow-cyber">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <h2 class="text-xs font-bold text-cyber tracking-widest uppercase mb-2" data-i18n="sales_sub">Direct Ordering Channel</h2>
+                <h3 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4" data-i18n="sales_title">CALL TO PLACE YOUR ORDER</h3>
+                
+                <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto mb-10 font-light leading-relaxed" data-i18n="sales_desc">
+                    Contact our sales hotline directly to confirm real-time stock, inquire about team/academy bulk pricing, or place your order over the phone.
+                </p>
+
+                <!-- Phone Line Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-10">
+                    <!-- Direct Phone Call -->
+                    <a href="tel:+359888123456" class="p-6 rounded-2xl bg-black/70 border border-cyber/50 hover:border-cyber transition-all group flex items-center justify-between text-left shadow-lg">
+                        <div>
+                            <span class="text-xs font-bold text-cyber uppercase tracking-wider block" data-i18n="phone_label1">Primary Sales Phone</span>
+                            <span class="text-xl font-black text-white group-hover:text-cyber transition-colors">+359 88 812 3456</span>
+                        </div>
+                        <i class="fa-solid fa-phone-volume text-2xl text-cyber group-hover:scale-110 transition-transform"></i>
+                    </a>
+
+                    <!-- Viber / WhatsApp -->
+                    <a href="https://wa.me/359888654321" target="_blank" class="p-6 rounded-2xl bg-black/70 border border-emerald-500/50 hover:border-emerald-400 transition-all group flex items-center justify-between text-left shadow-lg">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block" data-i18n="phone_label2">WhatsApp / Viber</span>
+                            <span class="text-xl font-black text-white group-hover:text-emerald-400 transition-colors">+359 88 865 4321</span>
+                        </div>
+                        <i class="fa-brands fa-whatsapp text-3xl text-emerald-400 group-hover:scale-110 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="inline-flex items-center gap-3 text-xs text-gray-300 uppercase tracking-widest font-bold bg-white/5 px-5 py-2.5 rounded-full border border-white/10">
+                    <i class="fa-regular fa-clock text-cyber"></i> <span data-i18n="operating_hours">Hours: Mon - Sat: 09:00 - 19:00 (EET)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-cyber rounded-lg flex items-center justify-center font-black text-black text-lg">
+                    V
+                </div>
+                <span class="text-xl font-black tracking-widest uppercase text-white">VORTEX ARMOR</span>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center" data-i18n="footer_copy">
+                &copy; 2026 VORTEX ARMOR BJJ. Built by Champions for Championship Performance.
+            </p>
+
+            <div class="flex space-x-6 text-gray-400">
+                <a href="#" class="hover:text-cyber transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="hover:text-cyber transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                <a href="#" class="hover:text-cyber transition-colors"><i class="fa-brands fa-youtube text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Internationalization Translations
+        const i18n = {
+            en: {
+                nav_home: "Home",
+                nav_heritage: "Champion DNA",
+                nav_gis: "Kimonos",
+                nav_tech: "Tech Specs",
+                nav_contact: "Sales Line",
+                btn_call: "Call Sales",
+                hero_badge: "BY BJJ CHAMPIONS • BUILT FOR WAR",
+                hero_h1_1: "UNMATCHED MAT",
+                hero_h1_2: "DOMINANCE",
+                hero_desc: "Engineered from the ground up by active World Championship medalists. Ultra-durable 450 GSM weaves designed for relentless daily sparring, grip neutralization, and zero fabric failures.",
+                btn_explore: "Explore Flagship Models",
+                btn_call_direct: "Call Direct Hotline",
+                t_1: "450 GSM Pearl Weave",
+                t_2: "Created by BJJ Champions",
+                t_3: "Anti-Bacterial EVA Collar",
+                t_4: "Triple Reinforced Seams",
+                heritage_sub: "Uncompromising Pedigree",
+                heritage_title: "DESIGNED & BATTLE-TESTED BY CHAMPIONS",
+                heritage_desc: "Standard kimonos fail under heavy guard passing and daily multi-hour rolls. VORTEX ARMOR was created by active Black Belt gold medalists who engineered every stitch to withstand thousands of hours of high-intensity grappling.",
+                stat_gold: "Gold Medals",
+                stat_pre: "Pre-Shrunk Fit",
+                stat_stitch: "Stitch Density",
+                quote_text: `"We built these kimonos because we were tired of gear ripping before major competitions. This armor is made for those who live on the mats every single day."`,
+                quote_author: "VORTEX Founder Team",
+                quote_role: "Black Belt Champion Division",
+                sec_models_sub: "Flagship Gear",
+                sec_models_title: "CHOOSE YOUR ARMOR",
+                m1_tag: "Royal Blue Edition",
+                in_stock: "In Stock",
+                m1_desc: "Striking royal blue competition-ready training kimono. Crafted with 450 GSM Pearl Weave jacket and double-reinforced knee paneling for maximum longevity.",
+                spec_jacket: "Jacket Weave:",
+                spec_pants: "Pants Material:",
+                spec_purpose: "Primary Purpose:",
+                spec_purpose_val1: "Daily Training & Hard Sparring",
+                size_label: "Select Size:",
+                btn_order_m1: "Call Hotline to Order Apex",
+                m2_tag: "Stealth Black Edition",
+                m2_desc: "Sleek, minimalist matte-black weave with low-profile shoulder crests. Built with pre-treated anti-shrink technology for non-stop mat grind.",
+                spec_purpose_val2: "Pro-Grade Training Armor",
+                btn_order_m2: "Call Hotline to Order Onyx",
+                craft_sub: "Engineering Superiority",
+                craft_title: "BUILT FOR WARFARE",
+                f1_t: "Triple-Stitched Seams",
+                f1_d: "Armpits, sleeve cuffs, and pant stress points feature high-density triple stitching to withstand aggressive grip breaking and heavy pressure passing.",
+                f2_t: "Anti-Bacterial EVA Lapel",
+                f2_d: "Fast-drying EVA foam collar resists moisture accumulation, reduces lapel weight, and thwarts opponent choke setups.",
+                f3_t: "Pre-Shrunk Technology",
+                f3_d: "Pre-treated fabric ensures your gi maintains its exact fit wash after wash. No unpredictable shrinking after heavy hot water washes.",
+                sales_sub: "Direct Ordering Channel",
+                sales_title: "CALL TO PLACE YOUR ORDER",
+                sales_desc: "Contact our sales hotline directly to confirm real-time stock, inquire about team/academy bulk pricing, or place your order over the phone.",
+                phone_label1: "Primary Sales Phone",
+                phone_label2: "WhatsApp / Viber",
+                operating_hours: "Hours: Mon - Sat: 09:00 - 19:00 (EET)",
+                footer_copy: "© 2026 VORTEX ARMOR BJJ. Built by Champions for Championship Performance."
+            },
+            bg: {
+                nav_home: "Начало",
+                nav_heritage: "Шампионско ДНК",
+                nav_gis: "Кимонота",
+                nav_tech: "Технологии",
+                nav_contact: "Телефон",
+                btn_call: "Обади се",
+                hero_badge: "ОТ BJJ ШАМПИОНИ • СЪЗДАДЕНО ЗА БИТКИ",
+                hero_h1_1: "НЕПРЕКЛОННО",
+                hero_h1_2: "ДОМИНИРАНЕ НА ТАТАМИТО",
+                hero_desc: "Проектирани от активни световни медалисти по Бразилско Жиу-Жицу. Икстра-издръжлива 450 GSM плетка, предназначена за тежки ежедневни спаринги и скъсване на хватове.",
+                btn_explore: "Разгледай Моделите",
+                btn_call_direct: "Директен Телефон",
+                t_1: "450 GSM Pearl Weave",
+                t_2: "Създадено от BJJ Шампиони",
+                t_3: "Антибактериален EVA Ревер",
+                t_4: "Тройно Подсилени Шевове",
+                heritage_sub: "Безупречен Родослов",
+                heritage_title: "ДИЗАЙНИРАНО И ТЕСТВАНО В БИТКИ ОТИ ШАМПИОНИ",
+                heritage_desc: "Стандартните кимонота се късат при тежки тренировки. VORTEX ARMOR е създадено от черни колани, за да издържа хиляди часове на най-интензивни граплинг битки.",
+                stat_gold: "Златни Медала",
+                stat_pre: "Предварително Свито",
+                stat_stitch: "Плътност на Шевовете",
+                quote_text: `"Създадохме тези кимонота, защото ни писна екипировката да се къса преди състезания. Тази броня е за хората, които живеят на татамито всеки ден."`,
+                quote_author: "Екипът на VORTEX",
+                quote_role: "Дивизия Шампиони Черни Колани",
+                sec_models_sub: "Флагмански Модели",
+                sec_models_title: "ИЗБЕРИ СВОЯТА БРОНЯ",
+                m1_tag: "Кралско Синьо Издание",
+                in_stock: "На Склад",
+                m1_desc: "Впечатляващо кралско синьо тренировъчно кимоно. 450 GSM Pearl Weave горнище с двойно подсилени колене за максимален живот.",
+                spec_jacket: "Плетка на Горнището:",
+                spec_pants: "Материал на Панталона:",
+                spec_purpose: "Предназначение:",
+                spec_purpose_val1: "Интензивни Тренировки и Спаринг",
+                size_label: "Изберете Размер:",
+                btn_order_m1: "Поръчай Модел Apex по Телефона",
+                m2_tag: "Черен Стелт Модел",
+                m2_desc: "Изчистена черна плетка с дискретни раменни емблеми. Технология без свиване за брутална ежедневна употреба.",
+                spec_purpose_val2: "Професионална Тренировъчна Броня",
+                btn_order_m2: "Поръчай Модел Onyx по Телефона",
+                craft_sub: "Инженерно Превъзходство",
+                craft_title: "СЪЗДАДЕНО ЗА БИТКИ",
+                f1_t: "Тройни Подсилени Шевове",
+                f1_d: "Критичните зони под мишниците, ръкавите и панталоните са подсилени с троен шев срещу скъсване при силен натиск.",
+                f2_t: "Антибактериален EVA Ревер",
+                f2_d: "Бързосъхнеща EVA пяна в ревера, която не попива пот и затруднява душенията на съперника.",
+                f3_t: "Технология Без Свиване",
+                f3_d: "Предварително обработеният плат гарантира, че кимоното запазва точния си размер пране след пране.",
+                sales_sub: "Канал за Директна Поръчка",
+                sales_title: "ОБАДЕТЕ СЕ ЗА ПОРЪЧКА",
+                sales_desc: "Свържете се с нашия телефон за продажба, за да потвърдите размерите в реално време, клубни отстъпки или бърза поръчка.",
+                phone_label1: "Основен Телефон за Продажби",
+                phone_label2: "WhatsApp / Viber",
+                operating_hours: "Работно време: Пон - Съб: 09:00 - 19:00 (EET)",
+                footer_copy: "© 2026 VORTEX ARMOR BJJ. Създадено от Шампиони."
+            }
+        };
+
+        let activeLang = 'en';
+
+        function setLanguage(lang) {
+            activeLang = lang;
+            document.getElementById('current-lang-code').innerText = lang.toUpperCase();
+
+            // Dismiss landing modal
+            const modal = document.getElementById('language-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+
+            // Apply translations
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    element.innerText = i18n[lang][key];
+                }
+            });
+        }
+
+        function toggleLanguage() {
+            setLanguage(activeLang === 'en' ? 'bg' : 'en');
+        }
+
+        // Size Selector State Handler
+        function selectSize(modelId, size) {
+            const btnClass = `.size-btn-${modelId}`;
+            const activeColorClass = modelId === 1 ? ['border-cyber', 'bg-cyber/20', 'text-cyber'] : ['border-gold', 'bg-gold/20', 'text-gold'];
+            
+            document.querySelectorAll(btnClass).forEach(btn => {
+                btn.classList.remove(...activeColorClass);
+                btn.classList.add('border-white/10', 'bg-white/5');
+            });
+
+            event.currentTarget.classList.remove('border-white/10', 'bg-white/5');
+            event.currentTarget.classList.add(...activeColorClass);
+
+            document.getElementById(`selected-size-${modelId}`).innerText = `Selected: ${size}`;
+        }
+    </script>
+</body>
+</html>
